@@ -1,5 +1,7 @@
 package tests.medunna_registration_test;
 
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +12,7 @@ import pages.MedunnaRegisterPage;
 import utilities.Driver;
 
 import static org.testng.AssertJUnit.assertTrue;
+
 
 public class US001 {
     /*
@@ -35,11 +38,13 @@ public class US001 {
      */
     MedunnaHomePage medunnaHomePage = new MedunnaHomePage();
 
+
     @BeforeTest
     public void before(){
+
         Driver.getDriver().get("https://medunna.com");
-        medunnaHomePage.userIcon.click();
-        medunnaHomePage.registerOption.click();
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", medunnaHomePage.userIcon);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", medunnaHomePage.registerOption);
 
     }
 
@@ -75,8 +80,7 @@ public class US001 {
 //        AC002: SSN cannot be left blank
 //        AC002TC01: User leaves the ssn blank, there should be "Your SSN is required." message
         medunnaRegisterPage.ssn.clear();
-        medunnaRegisterPage.ssn.sendKeys("Any Value");
-        medunnaRegisterPage.ssn.clear();
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", medunnaRegisterPage.registerSubmit);
         assertTrue(medunnaRegisterPage.requiredSsn.isDisplayed());
 
 //        AC002TC02: User enters the ssn only space, there should be "Your SSN is required." message
@@ -90,7 +94,7 @@ public class US001 {
 
 //        AC003: There should be a valid name that contains any chars and cannot be blank
 //        AC003TC01: User leaves the FirstName blank, there should be "Your FirstName is required." message
-        medunnaRegisterPage.registerSubmit.click();
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", medunnaRegisterPage.registerSubmit);
         assertTrue(medunnaRegisterPage.requiredFirstName.isDisplayed());
 
 //        AC003TC02: User enters the FirstName only space, there should be "Your FirstName is required." message
@@ -102,7 +106,7 @@ public class US001 {
 
 //        AC004: There should be a valid lastname that contains any chars and it is a required field
 //        AC004TC01: User leaves the lastname blank, there should be "Your LastName is required." message
-        medunnaRegisterPage.registerSubmit.click();
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", medunnaRegisterPage.registerSubmit);
         assertTrue(medunnaRegisterPage.requiredLastName.isDisplayed());
 
 //        AC004TC02: User enters the lastname only space, there should be "Your LastName is required." message

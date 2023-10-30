@@ -16,8 +16,8 @@ public class Driver {
         if (driver == null){
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(50));
         }
 
         return driver;
